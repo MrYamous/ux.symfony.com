@@ -1,27 +1,50 @@
-# [ux.symfony.com](https://ux.symfony.com)
+# ux.symfony.com
 
 Source code for [ux.symfony.com](https://ux.symfony.com).
 
 ## Installation
 
-### Source code
+### Forking the repository
 
-Install the project:
-```bash
-git clone git@github.com:symfony/ux
-cd ux/ux.symfony.com/
+To contribute to the website, you need to [fork the **symfony/ux.symfony.com** repository](https://github.com/symfony/ux.symfony.com/fork) on GitHub.
+This will give you a copy of the code under your GitHub user account. Read [the documentation "How to fork a repository"](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
+
+After forking the repository, you can clone it to your local machine:
+
+```shell
+# Using GitHub CLI https://cli.github.com/
+$ gh repo clone <USERNAME>/ux.symfony.com ux.symfony.com
+
+# Using SSH
+$ git clone git@github.com:<USERNAME>/ux.symfony.com.git ux.symfony.com
+$ cd ux.symfony.com
+# Add the upstream repository, to keep your fork up-to-date
+$ git remote add upstream git@github.com:symfony/ux.symfony.com.git
 ```
 
-Install the dependencies:
-```bash
+### Setting up the development environment
+
+To set up the development environment, you need the following tools:
+
+- **[PHP](https://www.php.net/downloads.php) 8.5 or higher** - Required for running the Symfony application
+- **[Composer](https://getcomposer.org/download/)** - PHP dependency manager
+- **[Symfony CLI](https://symfony.com/download)** - Recommended for running the development server
+- **[Docker](https://www.docker.com/)** - For running services (database, etc.)
+
+With these tools installed, you can install the project dependencies:
+
+```shell
+# Install PHP dependencies
 symfony composer install
 ```
 
-### Services
+### Running the website locally
 
-(optional) Configure Docker to launch Mercure
-```bash
-docker compose up -d
+To run the website in local development:
+
+```shell
+symfony serve --open
+# The website will be accessible at https://127.0.0.1:9044/
 ```
 
 ### Database
@@ -41,21 +64,6 @@ symfony console app:load-data
 Download the importmap packages locally:
 ```bash
 symfony console importmap:install
-```
-
-Compile the Sass files:
-```bash
-symfony console sass:build
-
-# (optional) Add the --watch flag to automatically recompile the Sass files on change.
-symfony console sass:build --watch
-```
-
-### Local server
-
-Start the local web server (in background):
-```bash
-symfony server:start -d
 ```
 
 ## Testing
