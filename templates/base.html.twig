@@ -23,6 +23,7 @@
             <script>
               const theme = localStorage.getItem('user-theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
               document.documentElement.setAttribute('data-bs-theme', theme === 'light' ? 'light' : 'dark');
+              localStorage.setItem('user-theme', theme === 'light' ? 'light' : 'dark');
             </script>
             {% block importmap %}
                 <script>
