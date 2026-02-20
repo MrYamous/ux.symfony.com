@@ -19,6 +19,7 @@ use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Extension\DefaultAttributes\DefaultAttributesExtension;
 use League\CommonMark\Extension\ExternalLink\ExternalLinkExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
+use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\Mention\MentionExtension;
 use League\CommonMark\Extension\Table\Table;
 use League\CommonMark\Extension\Table\TableExtension;
@@ -70,6 +71,11 @@ final readonly class ConverterFactory
                     'attributes' => ['class' => 'table-responsive'],
                 ],
             ],
+            'heading_permalink' => [
+                'id_prefix' => 'content',
+                'apply_id_to_heading' => true,
+                'insert' => 'none',
+            ],
         ]);
 
         $converter->getEnvironment()
@@ -78,6 +84,7 @@ final readonly class ConverterFactory
             ->addExtension(new MentionExtension())
             ->addExtension(new FrontMatterExtension())
             ->addExtension(new TableExtension())
+            ->addExtension(new HeadingPermalinkExtension())
             ->addExtension(new TabsExtension())
             ->addExtension(new ToolkitPreviewExtension($this->uriSigner, $this->urlGenerator))
             ->addRenderer(FencedCode::class, new FencedCodeRenderer($this->componentRenderer))
